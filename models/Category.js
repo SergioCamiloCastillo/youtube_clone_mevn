@@ -13,7 +13,7 @@ const CategorySchema = new Schema({
 
 
     },
-    descripcion: {
+    description: {
         type: String,
         minlength: [3, 'Descripcion minimo de 3 letras'],
         required: [true, "La descripcion es requerida"],
