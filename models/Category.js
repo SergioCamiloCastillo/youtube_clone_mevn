@@ -16,11 +16,11 @@ const CategorySchema = new Schema({
     description: {
         type: String,
         minlength: [3, 'Descripcion minimo de 3 letras'],
-        required: [true, "La descripcion es requerida"],
+        required: [true, "La descripción es requerida"],
 
     }
 
 }, { timestamps: true })
 
-CategorySchema.plugin(uniqueValidator,{message:'{PATH} already exists.'})
-module.exports= mongoose.model('Category', CategorySchema);
+CategorySchema.plugin(uniqueValidator, { message: '{PATH} already exists.' })
+module.exports = mongoose.model('Category', CategorySchema);

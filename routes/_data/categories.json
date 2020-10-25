@@ -1,0 +1,40 @@
+[{
+    "_id": "5f95c4a305dd9538763c2fdd",
+    "title": "Fashion",
+    "description": "Genial fashion y diseño",
+    "createdAt": "2020-10-25T18:32:03.919Z",
+    "updatedAt": "2020-10-25T18:32:03.919Z",
+    "__v": 0
+},
+{
+    "_id": "5f95c4b705dd9538763c2fde",
+    "title": "Tecnologia",
+    "description": "Para tecnologia",
+    "createdAt": "2020-10-25T18:32:23.168Z",
+    "updatedAt": "2020-10-25T18:32:23.168Z",
+    "__v": 0
+},
+{
+    "_id": "5f95c4c905dd9538763c2fdf",
+    "title": "Educacion",
+    "description": "Contenido de educacion",
+    "createdAt": "2020-10-25T18:32:41.908Z",
+    "updatedAt": "2020-10-25T18:32:41.908Z",
+    "__v": 0
+},
+{
+    "_id": "5f95c4e005dd9538763c2fe0",
+    "title": "Kids",
+    "description": "Contenido para niños",
+    "createdAt": "2020-10-25T18:33:04.078Z",
+    "updatedAt": "2020-10-25T18:33:04.078Z",
+    "__v": 0
+},
+{
+    "_id": "5f95c4e805dd9538763c2fe1",
+    "title": "Musica",
+    "description": "Musica y entretenimiento",
+    "createdAt": "2020-10-25T18:33:12.828Z",
+    "updatedAt": "2020-10-25T18:33:12.828Z",
+    "__v": 0
+}]
