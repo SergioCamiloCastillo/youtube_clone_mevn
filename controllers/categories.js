@@ -19,10 +19,14 @@ exports.getCategory = asyncHandler(async (req, res, next) => {
 
 })
 //Crear categorias
+
 exports.createCategories = asyncHandler(async (req, res, next) => {
+    const category = await Category.create({
+        ...req.body,
+        userId: req.user.id
+    })
 
-    const category = await Category.create(req.body)
-
+    return res.status(200).json({ sucess: true, data: category })
 })
 //Actualizar categoria
 exports.updateCategory = asyncHandler(async (req, res, next) => {
