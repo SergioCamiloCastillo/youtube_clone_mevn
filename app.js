@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require("morgan");
+const errorHandler=require("./middleware/error");
 const categoryRoutes = require('./routes/categories');
 mongoose = require('mongoose');
 
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === "development") {
 const dotenv = require("dotenv");
 
 app.use('/api/v1/categories', categoryRoutes);
+app.use(errorHandler)
 const PORT = process.env.PORT || 4000
 app.listen(PORT, () => {
     console.log("Sistema corriendo en puerto " + PORT)
