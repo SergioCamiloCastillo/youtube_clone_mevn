@@ -1,54 +1,72 @@
-const Category = require("../models/Category");
-const ErrorResponse = require('../utils/errorResponse')
 const asyncHandler = require('../middleware/asyncHandler')
-//Obtener categorias
+const ErrorResponse = require('../utils/errorResponse')
+const Category = require('../models/Category')
+
+// @desc    Get categories
+// @route   GET /api/v1/categories
+// @access  Private/Admin
 exports.getCategories = asyncHandler(async (req, res, next) => {
-    const categories = await Category.find()
-    res.status(200).json({ success: true, data: categories });
+  res.status(200).json(res.advancedResults)
 })
-//Obtener categoria por ID
+
+// @desc    Get single category
+// @route   GET /api/v1/categories/:id
+// @access  Private/Admin
 exports.getCategory = asyncHandler(async (req, res, next) => {
+  const category = await Category.findById(req.params.id)
 
-    const category = await Category.findById(req.params.id)
+  if (!category) {
+    return next(
+      new ErrorResponse(`No category with that id of ${req.params.id}`)
+    )
+  }
 
-    if (!category) {
-        return next(new ErrorResponse(`No se encontro la categoria con el id: ${req.params.id}`, 404))
-    }
-    res.status(200).json({ success: true, data: category });
-
-
+  res.status(200).json({ sucess: true, data: category })
 })
-//Crear categorias
 
+// @desc    Create Category
+// @route   POST /api/v1/categories/
+// @access  Private/Admin
 exports.createCategories = asyncHandler(async (req, res, next) => {
-    const category = await Category.create({
-        ...req.body,
-        userId: req.user.id
-    })
+  const category = await Category.create({
+    ...req.body,
+    userId: req.user.id
+  })
 
-    return res.status(200).json({ sucess: true, data: category })
+  return res.status(200).json({ sucess: true, data: category })
 })
-//Actualizar categoria
+
+// @desc    Update category
+// @route   PUT /api/v1/categories
+// @access  Private/Admin
 exports.updateCategory = asyncHandler(async (req, res, next) => {
+  const category = await Category.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+    context: 'query'
+  })
 
-    const category = await Category.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true, context: 'query' })
-    if (!category) {
-        return next(new ErrorResponse(`No se encontro la categoria con el id: ${req.params.id}`, 404))
-    }
-    res.status(200).json({ succes: true, data: category })
+  if (!category)
+    return next(
+      new ErrorResponse(`No category with that id of ${req.params.id}`)
+    )
 
-
+  res.status(200).json({ success: true, data: category })
 })
-//Eliminar categoria por ID
+
+// @desc    Delete Category
+// @route   DELETE /api/v1/categories/:id
+// @access  Private/Admin
 exports.deleteCategory = asyncHandler(async (req, res, next) => {
+  let category = await Category.findById(req.params.id)
 
-    const category = await Category.findById(req.params.id)
+  if (!category) {
+    return next(
+      new ErrorResponse(`No category with id of ${req.params.id}`, 404)
+    )
+  }
 
-    if (!category) {
-        return res.status(400).json({ success: true, error: `No se encontro la categoria con el id: ${req.params.id}` })
-    }
-    await category.remove()
-    res.status(200).json({ success: true, data: category });
+  await category.remove()
 
-
+  return res.status(200).json({ success: true, category })
 })
